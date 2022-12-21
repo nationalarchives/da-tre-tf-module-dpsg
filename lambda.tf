@@ -1,5 +1,5 @@
 resource "aws_lambda_function" "bagit_to_dri_sip" {
-  image_uri     = "${var.account_id}.dkr.ecr.eu-west-2.amazonaws.com/lambda_functions/tre-bagit-to-dri-sip:${var.dpsg_image_versions.tre_bagit_to_dri_sip}"
+  image_uri     = "${var.ecr_uri_host}${var.ecr_uri_repo_prefix}${var.prefix}-bagit-to-dri-sip:${var.dpsg_image_versions.tre_bagit_to_dri_sip}"
   package_type  = "Image"
   function_name = local.lambda_name_bagit_to_dri_sip
   role          = aws_iam_role.dri_preingest_sip_generation_lambda_role.arn
@@ -20,7 +20,7 @@ resource "aws_lambda_function" "bagit_to_dri_sip" {
 
 resource "aws_lambda_function" "dpsg_trigger" {
   // IAMGE URI REPO TBC
-  image_uri     = "${var.account_id}.dkr.ecr.eu-west-2.amazonaws.com/lambda_functions/tre-sqs-sf-trigger:${var.dpsg_image_versions.tre_sqs_sf_trigger}"
+  image_uri     = "${var.ecr_uri_host}${var.ecr_uri_repo_prefix}${var.prefix}-sqs-sf-trigger:${var.dpsg_image_versions.tre_sqs_sf_trigger}"
   package_type  = "Image"
   function_name = local.lambda_name_trigger
   role          = aws_iam_role.dpsg_trigger.arn
