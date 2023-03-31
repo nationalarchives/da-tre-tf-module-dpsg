@@ -1,6 +1,6 @@
 resource "aws_iam_role" "dri_preingest_sip_generation" {
-  name               = "${var.env}-${var.prefix}-dri-preigest-sip-generation-role"
-  assume_role_policy = data.aws_iam_policy_document.dri_preingest_sip_generation_assume_role_policy.json
+  name                 = "${var.env}-${var.prefix}-dri-preigest-sip-generation-role"
+  assume_role_policy   = data.aws_iam_policy_document.dri_preingest_sip_generation_assume_role_policy.json
   permissions_boundary = var.tre_permission_boundary_arn
   inline_policy {
     name   = "dri-preingest-sip-generation-policies"
@@ -62,8 +62,8 @@ data "aws_iam_policy_document" "dri_preingest_sip_generation_machine_policy" {
 
 # Role for the lambda functions in dri-preingest-sipgeneration step-function
 resource "aws_iam_role" "dri_preingest_sip_generation_lambda_role" {
-  name               = "${var.env}-${var.prefix}-dri-sip-ingest-lambda-role"
-  assume_role_policy = data.aws_iam_policy_document.lambda_assume_role_policy.json
+  name                 = "${var.env}-${var.prefix}-dri-sip-ingest-lambda-role"
+  assume_role_policy   = data.aws_iam_policy_document.lambda_assume_role_policy.json
   permissions_boundary = var.tre_permission_boundary_arn
 }
 
@@ -74,8 +74,8 @@ resource "aws_iam_role_policy_attachment" "dri_preingest_sip_lambda_logs" {
 
 # Role for the dri-preingest-sipgeneration step-function trigger
 resource "aws_iam_role" "dpsg_trigger" {
-  name               = "${var.env}-${var.prefix}-dpsg-trigger-lambda-role"
-  assume_role_policy = data.aws_iam_policy_document.lambda_assume_role_policy.json
+  name                 = "${var.env}-${var.prefix}-dpsg-trigger-lambda-role"
+  assume_role_policy   = data.aws_iam_policy_document.lambda_assume_role_policy.json
   permissions_boundary = var.tre_permission_boundary_arn
   inline_policy {
     name   = "${var.env}-${var.prefix}-dpsg-trigger"
