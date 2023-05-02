@@ -7,11 +7,6 @@ resource "aws_s3_bucket_policy" "dpsg_out" {
   policy = data.aws_iam_policy_document.dpsg_out_bucket.json
 }
 
-resource "aws_s3_bucket_acl" "dpsg_out" {
-  bucket = aws_s3_bucket.dpsg_out.id
-  acl    = "private"
-}
-
 resource "aws_s3_bucket_server_side_encryption_configuration" "dpsg_out" {
   bucket = aws_s3_bucket.dpsg_out.id
   rule {
